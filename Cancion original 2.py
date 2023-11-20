@@ -2,14 +2,14 @@ from music import *
 
 
  
-Jupyter = Score("Jupyter", 108.0)  # tempo is 108 bpm
+Jupyter = Score("Jupyter", 140.0)  # tempo is 108 bpm
 
 #Candidatos: 97 ; 83 
 #MelodyPart    = Part(83, 0)        # Melody  part on channel 0
 #BackgroundPart = Part(62,1)
 
-MelodyPart    = Part(12, 0)        # Melody  part on channel 0
-BackgroundPart = Part(10,1)
+MelodyPart    = Part(10, 0)        # Melody  part on channel 0
+BackgroundPart = Part(14,1)
 
 themePhrase = Phrase(0.0)            # theme starts at the beginning
 backgroundPhrase= Phrase(0.0)
@@ -17,7 +17,7 @@ backgroundPhrase= Phrase(0.0)
 
 #pitches1 = [G2,G2,G2,B2,B2,G2,G2,D2]
 #pitches1 = [G3,G3,G3,B3,B3,G3,G3,D3]
-pitches1 = [G5,G5,G5,B5,B5,G5,G5,D5]
+pitches1 = [G4,G4,G4,B4,B4,G4,G4,D4]
 durations1= [DEN, DEN,DEN, QN,QN, DEN,DEN, HN]
 
 pitches2 = [G2,G2,G2,C2,D2,G2,G2,D2]
@@ -38,7 +38,7 @@ response1Phrase = themePhrase.copy()
 backgroundPhrase.setStartTime(23.0)     # start after 4 quarter notes
 
 # play different parts in different registers
-Mod.transpose(themePhrase, 24)         # one octave higher
+Mod.transpose(themePhrase, 18)         # one octave higher
 
 # play each phrase twice
 Mod.repeat(themePhrase, 5)
