@@ -79,3 +79,4 @@ Jupyter.addPart(themePart)
 
 # play score
 Play.midi(Jupyter)
+Write.midi(Jupyter, "song.mid")
