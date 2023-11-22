@@ -1,41 +1,42 @@
+#Alexa Bravo
+#Andres Coutiño 
+#Daniela Villamar 
+#Noviembre 21, 2023
+
 from music import *
  
-##### define the data structure (score, parts, and phrases)
-PruebaMelodia = Score("Melodia de Prueba", 140) # 140 bpm
- 
-trumpetPart = Part(TRUMPET, 3)       # trumpet to MIDI channel 0
-vibesPart  = Part(10, 5)          # vibraphone to MIDI channel 1
-bassPart    = Part(ACOUSTIC_BASS, 2) # bass to MIDI channel 2
- 
-melodyPhrase = Phrase()   # holds the melody
-chordPhrase  = Phrase()   # holds the chords
-bassPhrase   = Phrase()   # holds the bass line
- 
-##### create musical data
-# melody 1
-#melodyPitch1 = [REST, G4, A4, B4, D5, REST, C4, D4, E4, G4, A4] 
-#melodyDur1   = [QN,   QN, QN,  QN, WN, EN,   DQN,QN, QN,  DQN, HN+EN]
+#Le asignamos un tempo a la melodia
+PruebaMelodia = Score("Melodia de Prueba", 140) 
 
-# melody 2
+#Definimos los instrumentos  
+trumpetPart = Part(TRUMPET, 3)       
+vibesPart  = Part(VIBES, 5)          
+bassPart    = Part(ACOUSTIC_BASS, 2) 
+
+#Creamos una "frase" para cada instrumento
+melodyPhrase = Phrase()   
+chordPhrase  = Phrase()   
+bassPhrase   = Phrase()    
+
+#Definimos las notas musicales
 melodyPitch2 = [REST, F4, G4, A4, C5, REST, D4, C5, B4, A4]
+#Definimos la duración
 melodyDur2   = [QN,   QN, QN, QN, WN, EN,   DQN,QN, QN, WN+HN]
 
-# third melody
+#Definimos las notas musicales
 thirdMelodyPitches = [REST, C5, D5, E5, G5, REST, F5, G5, A5, C6, D6]
+#Definimos la duración
 thirdMelodyDurations = [QN,   QN, QN, QN, WN, EN,   DQN,QN, QN,  DQN, HN+EN]
 
-# combine melodies
+#Combinamos las melodias
 combinedMelodyPitches = melodyPitch2 + thirdMelodyPitches
-#combinedMelodyPitches = melodyPitch1 + melodyPitch2 + thirdMelodyPitches
-#combinedMelodyDurations = melodyDur1 + melodyDur2 + thirdMelodyDurations
 combinedMelodyDurations =  melodyDur2 + thirdMelodyDurations
 
-#melodyPhrase.addNoteList(melodyPitch1, melodyDur1) # add to phrase
 melodyPhrase.addNoteList(melodyPitch2, melodyDur2)
 melodyPhrase.addNoteList(thirdMelodyPitches, thirdMelodyDurations)
 melodyPhrase.addNoteList(combinedMelodyPitches, combinedMelodyDurations)
  
-# chords
+#Creamos el coro
 chordPitches1   = [REST, [E3, G3, A3, C4], [E3, G3, A3, C4], REST, 
                     [FS3, A3, C4, D4]]
 chordDurations1 = [WN,    HN,               QN,              QN,    
@@ -53,14 +54,14 @@ chordDurations4 = [QN,   QN,                DHN,  HN,
 chordPitches5   = [REST, [E3, G3, B3, D4], REST]
 chordDurations5 = [QN,   HN,           HN]
 
- 
-chordPhrase.addNoteList(chordPitches1, chordDurations1)  # add them
+#Juntamos el coro
+chordPhrase.addNoteList(chordPitches1, chordDurations1) 
 chordPhrase.addNoteList(chordPitches2, chordDurations2)
 chordPhrase.addNoteList(chordPitches3, chordDurations3)
 chordPhrase.addNoteList(chordPitches4, chordDurations4)
 chordPhrase.addNoteList(chordPitches5, chordDurations5)
  
-# bass line
+#Creamos el bass
 bassPitches1   = [REST, A2, REST, A2, E2, D2, REST, D2, A2, G2, REST, 
                    G2, D2, C2] 
 bassDurations1 = [WN,   QN, EN,   EN, HN, QN, EN,   EN, HN, QN, EN,   
@@ -72,18 +73,20 @@ bassPitches2   = [REST, C2, G2, FS2, REST, FS2, C2, B1, REST, B1, FS2,
 bassPitches3   = [REST, E2, E2, B1, E2, REST]
 bassDurations3 = [EN,   EN, QN, QN, HN, HN]
 
- 
-bassPhrase.addNoteList(bassPitches1, bassDurations1)  # add them
+#Juntamos el bass
+bassPhrase.addNoteList(bassPitches1, bassDurations1)  
 bassPhrase.addNoteList(bassPitches2, bassDurations2)
 bassPhrase.addNoteList(bassPitches3, bassDurations3)
- 
-##### combine musical material
-trumpetPart.addPhrase(melodyPhrase) # add phrases to parts
+
+#Combinamos todo
+trumpetPart.addPhrase(melodyPhrase)
 vibesPart.addPhrase(chordPhrase)
 bassPart.addPhrase(bassPhrase)
  
-PruebaMelodia.addPart(trumpetPart) # add parts to score
+PruebaMelodia.addPart(trumpetPart) 
 PruebaMelodia.addPart(vibesPart)
 PruebaMelodia.addPart(bassPart)
  
-Play.midi(PruebaMelodia)  # play music
+#Play a la musica y creamos un archivo midi
+Play.midi(PruebaMelodia) 
+Write.midi(PruebaMelodia, "Melodia1.mid")
