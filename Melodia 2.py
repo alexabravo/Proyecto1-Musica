@@ -1,55 +1,66 @@
-from music import *
- 
-# Create the necessary musical data
-Melodia2 = Score("Melodia Prueba 2", 108.0)  # tempo is 108 bpm
- 
-flutePart    = Part(12, 0)        # flute part on channel 0
-trumpetPart  = Part(10, 1)      # trumpet part on channel 1
-clarinetPart = Part(CLARINET, 2)     # clarinet part on channel 2
- 
-themePhrase = Phrase(0.0)            # theme starts at the beginning
- 
+#Alexa Bravo
+#Andres Coutiño 
+#Daniela Villamar 
+#Noviembre 21, 2023
 
+from music import *
+
+#Le asignamos un tempo a la melodia
+Melodia2 = Score("Melodia Prueba 2", 108.0)  
+
+#Definimos los instrumentos 
+flutePart    = Part(FLUTE, 0)        
+trumpetPart  = Part(TRUMPET, 1)      
+clarinetPart = Part(CLARINET, 2)     
+ 
+#Creamos una "frase" 
+themePhrase = Phrase(0.0)            
+ 
+#Definimos las notas musicales
 pitches1   = [C4, D4, E4, G4, A4]
+#Definimos la duración
 durations1 = [QN, EN, SN, EN, SN]
 
+#Definimos las notas musicales
 pitches2 = [G5, G5, G5, D5, D5, D5, B4, B4, B4, G4, G4, G4]
+#Definimos la duración
 durations2 = [ENT, DSN, SN, DEN, DEN, DEN, SN, DSN, SN, DEN, DEN, SN]
  
-
+#Definimos las notas musicales
 pitches3 = [D5, F4, E4, D4, C4]
+#Definimos la duración
 durations3 = [DEN, QN, SN, DEN, HN]
  
-# add the notes to the theme
+#Vamos agregando las listas a la frase, cada una con las notras y la duración) 
 themePhrase.addNoteList(pitches1, durations1)
 themePhrase.addNoteList(pitches2, durations2)
 themePhrase.addNoteList(pitches3, durations3)
  
-# make two new phrases and change start times to make a round
+#Hacemos dos frases nuevas
 response1Phrase = themePhrase.copy()
 response2Phrase = themePhrase.copy()
  
-response1Phrase.setStartTime(4.0)     # start after 4 quarter notes
-response2Phrase.setStartTime(8.0)     # start after 8 quarter notes
+response1Phrase.setStartTime(4.0)     
+response2Phrase.setStartTime(8.0)    
  
-# play different parts in different registers
-Mod.transpose(themePhrase, 13)         # one octave higher
-Mod.transpose(response2Phrase, 13)    # one octave lower
+#Le damos play en orden aleatoreo
+Mod.transpose(themePhrase, 12)         
+Mod.transpose(response2Phrase, -12)    
  
-# play each phrase twice
+#Repetimos la frase dos veces
 Mod.repeat(themePhrase, 2)
 Mod.repeat(response1Phrase, 2)
 Mod.repeat(response2Phrase, 2)
  
-# add phrases to corresponding parts
+#Agregamos las "frases"
 flutePart.addPhrase(themePhrase)
 trumpetPart.addPhrase(response1Phrase)
 clarinetPart.addPhrase(response2Phrase)
- 
-# add parts to score
+
 Melodia2.addPart(flutePart)
 Melodia2.addPart(trumpetPart)
-#Melodia2.addPart(clarinetPart)
+Melodia2.addPart(clarinetPart)
  
-# play score
+#Play a la musica y creamos un archivo midi
 Play.midi(Melodia2)
+Write.midi(Melodia2, "Melodia2.mid")
