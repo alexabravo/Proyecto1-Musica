@@ -5,8 +5,8 @@ from music import *
 Jupyter = Score("Jupyter", 100.0)  # tempo is 108 bpm
 
 
-themePart = Part(83,0)
-MelodyPart    = Part(10, 0)        # 114 , 10 , 48 ,70 on channel 0
+themePart = Part(70,0)
+MelodyPart    = Part(10, 0)        # 93 , 10 , 48 ,70 on channel 0
 MelodyPart2 = Part(10,0)
 
 themePhrase= Phrase(0.0)
