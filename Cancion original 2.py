@@ -56,3 +56,4 @@ Jupyter.addPart(BackgroundPart)
 
 # play score
 Play.midi(Jupyter)
+Write.midi(Jupyter, "cou2.mid")
